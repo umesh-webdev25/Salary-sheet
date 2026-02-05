@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-[#f8fafc] text-[#0f172a] antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-200 rounded-full hover:bg-primary-300 transition-colors;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-accent-500 hover:bg-accent-600 text-white font-medium px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply bg-primary-700 hover:bg-primary-800 text-white font-medium px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply border-2 border-accent-500 text-accent-600 hover:bg-accent-50 font-medium px-6 py-2.5 rounded-lg transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply bg-red-500 hover:bg-red-600 text-white font-medium px-6 py-2.5 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-2.5 border border-primary-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-all duration-200 outline-none;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-card hover:shadow-card-hover transition-all duration-200 p-6;
+  }
+
+  .table-container {
+    @apply overflow-x-auto rounded-lg border border-primary-200;
+  }
+
+  .table {
+    @apply min-w-full divide-y divide-primary-200;
+  }
+
+  .table-header {
+    @apply bg-primary-900 text-white;
+  }
+
+  .table-row {
+    @apply hover:bg-primary-50 transition-colors duration-150;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+
+  body {
+    @apply bg-white;
+  }
+
+  /* Hide everything except the salary sheet content */
+  body>*:not(#root) {
+    display: none !important;
+  }
+
+  /* Hide navigation, headers, and buttons during print */
+  nav,
+  header,
+  .print\\:hidden,
+  button:not(.print-button) {
+    display: none !important;
+  }
+
+  /* Ensure the modal content prints properly */
+  .fixed {
+    position: relative !important;
+    background: white !important;
+  }
+
+  /* Optimize table printing */
+  table {
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  /* Remove shadows and rounded corners for print */
+  .card,
+  .shadow-card,
+  .shadow-card-hover,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-xl {
+    box-shadow: none !important;
+  }
+
+  .rounded-lg,
+  .rounded-xl {
+    border-radius: 0 !important;
+  }
+
+  /* Ensure good contrast for printing */
+  .text-primary-600,
+  .text-primary-700 {
+    color: #374151 !important;
+  }
+
+  .text-primary-900 {
+    color: #111827 !important;
+  }
+
+  /* Print backgrounds for better clarity */
+  .bg-primary-50,
+  .bg-blue-50,
+  .bg-green-50,
+  .bg-red-50,
+  .bg-yellow-50,
+  .bg-purple-50,
+  .bg-indigo-50,
+  .bg-accent-50 {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
